@@ -11,7 +11,7 @@ function requestHandler(request, response) {
       local dmxArray = request.query.dmx;
       local dmxValues = split(dmxArray,",");
       device.send("dmxValues",dmxValues);
-      responseText = "We got a dmx-address-string"
+      responseText += "We got a dmx-address-string"
     }
     
     // Code to handle the Pitchfork Color Picker.
@@ -27,12 +27,10 @@ function requestHandler(request, response) {
              responseText = "JSON received";
         }
     } catch (ex){
-        responseText = "No JSON or bad JSON received";
+        responseText = " - No JSON or bad JSON received";
     }
     response.send(200,responseText);
-    //server.log(request.query);
-    // send a response back saying everything was OK.
-    //response.send(200, "<!doctype html><html><head></head><body><p>OK</p><p> <a href='?led=1'>Turn On</a></br> <a href='?led=0'>Turn Off</a></p></body></html>");
+
   } catch (ex) {
     response.send(500, "Internal Server Error: " + ex);
   }
